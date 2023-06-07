@@ -8,6 +8,7 @@ namespace DesktopAbstractFactoryExample.Core
 {
     public abstract class GameObject
     {
+        public abstract string IMAGE_SOURCE { get; set; }
         public abstract int BUILDING_ENDURANCE { get; set; }
 
 

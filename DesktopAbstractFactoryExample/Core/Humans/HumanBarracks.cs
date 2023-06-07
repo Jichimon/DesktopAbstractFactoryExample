@@ -8,12 +8,13 @@ namespace DesktopAbstractFactoryExample.Core.Humans
 {
     internal class HumanBarracks : Barracks
     {
-        private string imageSrc = Environment.CurrentDirectory + "/Storage/Humans/human_barracks.jpg";
 
         public HumanBarracks() : base()
         {
-            Image = Image.FromFile(imageSrc);
+            Image = Image.FromFile(IMAGE_SOURCE);
         }
+
+        public override string IMAGE_SOURCE { get; set; } = Environment.CurrentDirectory + "/Storage/Humans/human_barracks.jpg";
 
         public override int UPGRADES_QUANTITY { get; set; } = 2;
         public override int LEVEL { get; set; } = 1;

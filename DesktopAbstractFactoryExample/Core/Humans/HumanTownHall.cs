@@ -8,13 +8,13 @@ namespace DesktopAbstractFactoryExample.Core.Humans
 {
     internal class HumanTownHall : TownHall
     {
-        private string imageSrc = Environment.CurrentDirectory + "/Storage/Humans/human_castle.jpg";
 
         public HumanTownHall() : base()
         {
-            Image = Image.FromFile(imageSrc);
+            Image = Image.FromFile(IMAGE_SOURCE);
         }
 
+        public override string IMAGE_SOURCE { get; set; } = Environment.CurrentDirectory + "/Storage/Humans/human_castle.jpg";
         public override int UPGRADES_QUANTITY { get; set; } = 5;
         public override int LEVEL { get; set; } = 2;
         public override int BUILDING_ENDURANCE { get; set; } = 5000;

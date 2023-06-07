@@ -8,12 +8,13 @@ namespace DesktopAbstractFactoryExample.Core.Orcs
 {
     internal class OrcHouse : House
     {
-        private string imageSrc = Environment.CurrentDirectory + "/Storage/Orcs/orc_house.jpg";
 
         public OrcHouse() : base()
         {
-            Image = Image.FromFile(imageSrc);
+            Image = Image.FromFile(IMAGE_SOURCE);
         }
+
+        public override string IMAGE_SOURCE { get; set; } = Environment.CurrentDirectory + "/Storage/Orcs/orc_house.jpg";
 
         public override int UPGRADES_QUANTITY { get; set; } = 6;
         public override int LEVEL { get; set; } = 3;

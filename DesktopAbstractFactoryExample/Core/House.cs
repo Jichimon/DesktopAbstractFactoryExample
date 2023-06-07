@@ -8,6 +8,7 @@ namespace DesktopAbstractFactoryExample.Core
 {
     public abstract class House : GameObject
     {
+
         public abstract int UPGRADES_QUANTITY { get; set; }
         public abstract int LEVEL { get; set; }
 
