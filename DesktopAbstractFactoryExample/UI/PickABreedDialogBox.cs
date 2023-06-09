@@ -145,6 +145,7 @@ namespace DesktopAbstractFactoryExample.UI
                     case Breeds.ORC_BREED: return new OrcBreedFactory();                 
                     default:
                         throw new NullReferenceException("No se puede implementar el elemento seleccionado " + selectedItem + " en el comboBox!");
+
                 }
 
             }

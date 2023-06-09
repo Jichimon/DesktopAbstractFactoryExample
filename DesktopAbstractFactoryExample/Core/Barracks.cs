@@ -6,15 +6,23 @@ using System.Threading.Tasks;
 
 namespace DesktopAbstractFactoryExample.Core
 {
-    public abstract class Barracks : GameObject
+    public abstract class Barracks
     {
+
+        public abstract string IMAGE_SOURCE { get; set; }
+        public abstract int BUILDING_ENDURANCE { get; set; }
         public abstract int UPGRADES_QUANTITY { get; set; }
         public abstract int GROUND_UNIT_CREATION_TIME_IN_SECONDS { get; set; }
         public abstract int AIR_UNIT_CREATION_TIME_IN_SECONDS { get; set; }
         public abstract int LEVEL { get; set; }
 
-        public override int X { get; set; } = 450;
-        public override int Y { get; set; } = 50;
+        public int X { get; set; } = 450;
+        public int Y { get; set; } = 50;
+
+        public abstract Image Image { get; set; }
+        public int Width { get; set; } = 200;
+        public int Height { get; set; } = 200;
+        public Rectangle Rectangle { get; private set; }
 
 
         public Barracks()
@@ -22,6 +30,10 @@ namespace DesktopAbstractFactoryExample.Core
             InitRectangle();
         }
 
+        private void InitRectangle()
+        {
+            Rectangle = new Rectangle(X, Y, Width, Height);
+        }
 
 
         public override string ToString()

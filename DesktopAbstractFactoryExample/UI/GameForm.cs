@@ -16,12 +16,18 @@ namespace DesktopAbstractFactoryExample
 
 
         private BreedFactory? _breedFactory;
-        private readonly List<GameObject> _objects;
-        
+
+        // game objects //////////////////////
+
+        private House? _house;
+        private Barracks? _barracks;
+        private TownHall? _townhall;
+
+        //////////////////////////////////////
+
         public GameForm()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
-            this._objects = new List<GameObject>();
             InitializeComponent();
             Init();
         }
@@ -38,7 +44,6 @@ namespace DesktopAbstractFactoryExample
 
         public void CreateLand(BreedFactory breedFactory)
         {
-            _objects.Clear();
             _breedFactory = breedFactory;
             ShowPanel();
             ShowButtons();
@@ -69,17 +74,17 @@ namespace DesktopAbstractFactoryExample
 
         private void HideButtons()
         {
-            createCastleButton.Visible = false;
+            createTownHallButton.Visible = false;
             createBarracksButton.Visible = false;
             createHouseButton.Visible = false;
         }
 
         private void ShowButtons()
         {
-            createCastleButton.Visible = true;
+            createTownHallButton.Visible = true;
             createBarracksButton.Visible = true;
             createHouseButton.Visible = true;
-            createCastleButton.Enabled = true;
+            createTownHallButton.Enabled = true;
             createHouseButton.Enabled = true;
             createBarracksButton.Enabled = true;
         }
@@ -109,13 +114,18 @@ namespace DesktopAbstractFactoryExample
         #endregion
 
         #region Action Methods
-        private void createCastleButton_Click(object sender, EventArgs e)
+        private void createTownHallButton_Click(object sender, EventArgs e)
         {
             try
             {
                 if (_breedFactory is null) throw new NullReferenceException("No hay ninguna raza seleccionada!");
-                AddObjectToLand(_breedFactory.CreateTownHall());
-                this.createCastleButton.Enabled = false;
+                _townhall = _breedFactory.CreateTownHall();
+                
+                Graphics graphics = landPictureBox.CreateGraphics();
+                graphics.DrawImage(_townhall.Image, _townhall.Rectangle);
+                graphics.Dispose();
+                
+                this.createTownHallButton.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -129,7 +139,12 @@ namespace DesktopAbstractFactoryExample
             try
             {
                 if (_breedFactory is null) throw new NullReferenceException("No hay ninguna raza seleccionada!");
-                AddObjectToLand(_breedFactory.CreateHouse());
+                _house = _breedFactory.CreateHouse();
+                
+                Graphics graphics = landPictureBox.CreateGraphics();
+                graphics.DrawImage(_house.Image, _house.Rectangle);
+                graphics.Dispose();
+                
                 this.createHouseButton.Enabled = false;
             }
             catch (Exception ex)
@@ -144,7 +159,12 @@ namespace DesktopAbstractFactoryExample
             try
             {
                 if (_breedFactory is null) throw new NullReferenceException("No hay ninguna raza seleccionada!");
-                AddObjectToLand(_breedFactory.CreateBarracks());
+                _barracks = _breedFactory.CreateBarracks();
+                
+                Graphics graphics = landPictureBox.CreateGraphics();
+                graphics.DrawImage(_barracks.Image, _barracks.Rectangle);
+                graphics.Dispose();
+                
                 this.createBarracksButton.Enabled = false;
             }
             catch (Exception ex)
@@ -156,26 +176,26 @@ namespace DesktopAbstractFactoryExample
 
         private void landPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
-            foreach (var gameObject in _objects)
+
+            if (_house is not null && _house.Rectangle.Contains(e.Location))
             {
-                if (gameObject.Rectangle.Contains(e.Location))
-                {
-                    this.textBoxObjectProperties.Text= gameObject.ToString();
-                }
+                this.textBoxObjectProperties.Text = _house.ToString();
+            }
+
+
+            if (_townhall is not null && _townhall.Rectangle.Contains(e.Location))
+            {
+                this.textBoxObjectProperties.Text = _townhall.ToString();
+            }
+
+
+            if (_barracks is not null && _barracks.Rectangle.Contains(e.Location))
+            {
+                this.textBoxObjectProperties.Text = _barracks.ToString();
             }
         }
 
         #endregion
-
-        private void AddObjectToLand(GameObject gameObject)
-        {
-
-            _objects.Add(gameObject);
-            Graphics graphics = landPictureBox.CreateGraphics();
-            graphics.DrawImage(gameObject.Image, gameObject.Rectangle);
-            graphics.Dispose();
-        }
-
 
         private static Color GetLandPanelRandomColor()
         {
@@ -183,7 +203,6 @@ namespace DesktopAbstractFactoryExample
             {
                 Color.FromArgb(117, 102, 61),
                 Color.FromArgb(111, 99, 67),
-                Color.DarkKhaki,
                 Color.FromArgb(206,189, 141)
             };
             var rndGenerator = new Random();

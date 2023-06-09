@@ -42,7 +42,7 @@ namespace DesktopAbstractFactoryExample
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitButtonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelLand = new System.Windows.Forms.Label();
-            this.createCastleButton = new System.Windows.Forms.Button();
+            this.createTownHallButton = new System.Windows.Forms.Button();
             this.createHouseButton = new System.Windows.Forms.Button();
             this.createBarracksButton = new System.Windows.Forms.Button();
             this.textBoxObjectProperties = new System.Windows.Forms.TextBox();
@@ -120,15 +120,15 @@ namespace DesktopAbstractFactoryExample
             this.labelLand.TabIndex = 2;
             this.labelLand.Text = "Mi Territorio";
             // 
-            // createCastleButton
+            // createTownHallButton
             // 
-            this.createCastleButton.Location = new System.Drawing.Point(104, 174);
-            this.createCastleButton.Name = "createCastleButton";
-            this.createCastleButton.Size = new System.Drawing.Size(171, 46);
-            this.createCastleButton.TabIndex = 3;
-            this.createCastleButton.Text = "Generar Castillo";
-            this.createCastleButton.UseVisualStyleBackColor = true;
-            this.createCastleButton.Click += new System.EventHandler(this.createCastleButton_Click);
+            this.createTownHallButton.Location = new System.Drawing.Point(104, 174);
+            this.createTownHallButton.Name = "createTownHallButton";
+            this.createTownHallButton.Size = new System.Drawing.Size(171, 46);
+            this.createTownHallButton.TabIndex = 3;
+            this.createTownHallButton.Text = "Generar Castillo";
+            this.createTownHallButton.UseVisualStyleBackColor = true;
+            this.createTownHallButton.Click += new System.EventHandler(this.createTownHallButton_Click);
             // 
             // createHouseButton
             // 
@@ -198,7 +198,7 @@ namespace DesktopAbstractFactoryExample
             this.Controls.Add(this.textBoxObjectProperties);
             this.Controls.Add(this.createBarracksButton);
             this.Controls.Add(this.createHouseButton);
-            this.Controls.Add(this.createCastleButton);
+            this.Controls.Add(this.createTownHallButton);
             this.Controls.Add(this.labelLand);
             this.Controls.Add(this.mainMenu);
             this.MainMenuStrip = this.mainMenu;
@@ -222,7 +222,7 @@ namespace DesktopAbstractFactoryExample
         private ToolStripMenuItem viewToolStripMenuItem;
         private ToolStripMenuItem changeLandColorToolStripMenuItem;
         private ToolStripMenuItem exitButtonMenuItem;
-        private Button createCastleButton;
+        private Button createTownHallButton;
         private Button createHouseButton;
         private Button createBarracksButton;
         private TextBox textBoxObjectProperties;
